@@ -1,0 +1,33 @@
+
+
+
+#country-info {
+    box-shadow: black;
+    font-family: "Arial";
+    margin: 10px;
+    box-shadow: 1px 1px 2px grey;
+    border-radius: 2px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+
+#country-info h1 {
+    position: relative;
+    font-family: "Comic Sans MS";
+    border-bottom: 1px solid darkgrey;
+    margin: 10px;
+
+}
+
+#country-info p {
+    margin: 10px;
+
+}
+
+#country-info img {
+    margin: 10px;
+    float: left;
+    height: 32px;
+}
+
