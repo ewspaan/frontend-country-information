@@ -1,9 +1,13 @@
 const searchButton = document.getElementById('search-button');
-const searchContainer = document.getElementById("search-field")
 searchButton.addEventListener('click', logMouse);
+
+const searchContainer = document.getElementById("search-field")
 searchContainer.addEventListener('keyup', logKey);
+
 const infoContainer = document.getElementById("country-info");
-let itemG = 0;
+console.log(infoContainer.accessKey);
+
+searchCountry("Nederland");
 
 function logKey(e) {
     //console.log(e);
@@ -14,90 +18,75 @@ function logKey(e) {
         console.log("enter");
         console.log("text = " + text);
         searchCountry(text);
-        document.getElementById('search-field').value = '';
+        searchContainer.value = '';
     }
 }
 
 function logMouse(e){
-    //console.log(e)
+    console.log(e)
     let text = document.getElementById("search-field").value;
     //console.log("text = " + text);
     if (text) {
         console.log("click");
         console.log("text = " + text);
         searchCountry(text);
-        document.getElementById('search-field').value = '';
+        searchContainer.value = '';
     }
 }
 
 async function searchCountry(text) {
+
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = "";
+
+    const oldDataCheck = document.getElementById("country");
+    console.log(oldDataCheck);
+
+
+
     try {
-            const urlString = "https://restcountries.eu/rest/v2/name/" + text + "?fullText=true";
-            console.log(urlString);
-            const result = await axios.get(urlString);
-            console.log("text in try = " + text);
-            console.log(urlString);
-            console.log(result);
+        const result = await axios.get(`https://restcountries.eu/rest/v2/name/${text}?fullText=true`);
+        console.log("text in try = " + text);
+        console.log(result);
+
+        if(oldDataCheck){
+            infoContainer.removeChild(oldDataCheck);
+        }
             createCountryInfoField(result);
     }
     catch (e) {
-        if (itemG>0){
-            console.log(itemG + "hoi in if");
-            const elmnt = document.createElement("p");
-            const textNode = document.createTextNode("Nogmaals error")
-            elmnt.appendChild(textNode);
+        console.error(e);
+        errorMessage.textContent = "Country doesn't exist.";
+        return e;
+        }
 
-            const item = document.getElementById("error-message");
-            item.replaceChild(elmnt,item.childNodes[0]);
-        }
-        else {
-            console.log("error in else");
-            const idError = document.getElementById("error-message")
-            const errorMessage = document.createElement("p");
-            errorMessage.textContent = ("Country doesn't exist");
-            idError.appendChild(errorMessage);
-            itemG++;
-            console.log(itemG);
-            //const textnode = document.createTextNode("Country doesn't exist");
-            //const id = document.getElementById("country-info");
-            //errorMessage.textContent = "Country doesn't exist.";
-            //infoContainer.replaceChild(errorMessage,id.childNodes[0]);
-            return (e);
-        }
-    }
 }
-// function createInfoContainer(infoCountry,infoCapitel,infoCurrency,infoLanguages){
-//
-//     return infoCountry + "\n" + infoCapitel + infoCurrency + "\n" + infoLanguages;
-//
-//
-// }
+
 function createCountryInfoField(result){
-    console.log("country");
-    // infoContainer.removeChild(landName);
-    // infoContainer.removeChild(landNameSubregionPopulation);
-    // infoContainer.removeChild(landCapitalCurrency);
-    // infoContainer.removeChild(landLanguages);
-    // infoContainer.removeChild(flagImage);
+    const country = document.createElement("div");
+    country.setAttribute("id","country");
+
     const flagImage = document.createElement("IMG");
     flagImage.src = result.data[0].flag;
-    infoContainer.appendChild(flagImage);
-    console.log("Hoi2");
+    country.appendChild(flagImage);
+
     const landName = document.createElement("h1");
     landName.textContent = (result.data[0].name);
-    infoContainer.appendChild(landName);
+    country.appendChild(landName);
 
     const landNameSubregionPopulation = document.createElement("p");
     landNameSubregionPopulation.textContent = (createLandPopulationString(result.data[0]));
-    infoContainer.appendChild(landNameSubregionPopulation);
+    country.appendChild(landNameSubregionPopulation);
 
     const landCapitalCurrency = document.createElement("p");
     landCapitalCurrency.textContent = (`The capital is ${result.data[0].capital}`) + (createCurrencyString(result.data[0].currencies));
-    infoContainer.appendChild(landCapitalCurrency);
+    country.appendChild(landCapitalCurrency);
 
     const landLanguages = document.createElement("p");
     landLanguages.textContent = (createLanguageString(result.data[0].languages));
-    infoContainer.appendChild(landLanguages);
+    country.appendChild(landLanguages);
+
+    infoContainer.appendChild(country);
 }
 function createLandPopulationString(land){
      return (`${land.name} is situated in ${land.subregion}. It has a population of ${land.population} people.`);
@@ -138,6 +127,3 @@ function createStringFromArray(array,beginString) {
         }
     }
 }
-
-
-// sla referentie naar de container op

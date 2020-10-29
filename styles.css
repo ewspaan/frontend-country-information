@@ -1,15 +1,22 @@
+.search-button-error{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
+#error-message{
+    min-height: 21px;
+    min-width: 140px;
+}
 
 
 #country-info {
-    box-shadow: black;
     font-family: "Arial";
     margin: 10px;
     box-shadow: 1px 1px 2px grey;
     border-radius: 2px;
     padding-top: 30px;
     padding-bottom: 30px;
-
 }
 
 #country-info h1 {

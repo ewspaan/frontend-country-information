@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class = "land">
-        <input id="search-field" type="text" placeholder="Zoeken" />
+    <h1> Type in a countryname to find out some fun facts.</h1>
+    <div class = "search-button-error">
+        <label for="search-field"></label><input id="search-field" type="text" placeholder="Zoeken" />
         <button type="button" id="search-button">Search</button>
+        <div id="error-message"></div>
     </div>
-    <div id="error-message"></div>
+
     <div id="country-info"></div>
 
     <script src="main.js"></script>
