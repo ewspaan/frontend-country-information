@@ -5,13 +5,19 @@ const searchContainer = document.getElementById("search-field")
 searchContainer.addEventListener('keyup', logKey);
 
 const infoContainer = document.getElementById("country-info");
-console.log(infoContainer.accessKey);
 
-searchCountry("Nederland");
+// Fake een event
+const elem = document.getElementById('search-button');
+elem.addEventListener('click', function(e) {
+    searchCountry("Nederland");
+});
+setTimeout(function() {
+    elem.dispatchEvent(new Event('click'));
+}, 0);
 
 function logKey(e) {
-    //console.log(e);
-    //console.log(e.value);
+    console.log(e);
+    console.log(e.value);
     let text = document.getElementById("search-field").value;
     //console.log("text = " + text);
     if (text && e.keyCode === 13) {
@@ -24,8 +30,9 @@ function logKey(e) {
 
 function logMouse(e){
     console.log(e)
+    console.log(e.value);
     let text = document.getElementById("search-field").value;
-    //console.log("text = " + text);
+    console.log("text = " + text);
     if (text) {
         console.log("click");
         console.log("text = " + text);
