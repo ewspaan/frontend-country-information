@@ -1,44 +1,78 @@
 
-@media screen and (min-width: 572px) {
+#container-back-ground {
+    background-color: hsl(210, 17%, 98%);
+    font-size: 100px;
+    color: hsl(210, 16%, 93%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
 
-    .search-button-error {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-    }
+#container{
+    position: relative;
+    color: hsl(210, 11%, 15%);
+    display: grid;
+    row-gap: 16px;
+    column-gap: 0px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 50px auto auto;
+    grid-template-areas:
+                "a a a"
+                "b b c"
+                ". d ."
+                "e e e";
+}
 
-    #error-message {
-        min-height: 21px;
-        min-width: 140px;
-    }
+
+#item-a {
+    grid-area: a;
+}
+#search-field {
+    grid-area: b;
+}
+#search-button {
+    grid-area: c;
+}
+#error-message {
+    grid-area: d;
+}
+#country-info{
+    grid-area: e;
+}
 
 
-    #country-info {
-        font-family: "Arial";
-        margin: 10px;
-        box-shadow: 1px 1px 2px grey;
-        border-radius: 2px;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
 
-    #country-info h1 {
-        position: relative;
-        font-family: "Comic Sans MS";
-        border-bottom: 1px solid darkgrey;
-        margin: 10px;
+#country-info {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
+    margin: 10px;
+    border-radius: 2px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 
-    }
+#country-info h1 {
+    border-bottom: 2px solid hsl(210, 10%, 23%);
+    margin: 10px;
+}
 
-    #country-info p {
-        margin: 10px;
+#country-info p {
+    margin: 10px;
+}
 
-    }
+img {
+    float: left;
+    height: 68px;
+    margin-right: 30px;
+}
 
-    #country-info img {
-        margin: 10px;
-        float: left;
-        height: 32px;
-    }
-
+    @media screen and (min-width: 572px) {
+body{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
 }
