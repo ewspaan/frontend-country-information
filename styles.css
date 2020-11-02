@@ -1,13 +1,27 @@
-
+body{
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+}
 #container-back-ground {
     background-color: hsl(210, 17%, 98%);
     font-size: 100px;
     color: hsl(210, 16%, 93%);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     z-index: -1;
+}
+#search-button{
+    font-family: 'Lato', sans-serif;
+    background-color: hsl(210, 10%, 23%);
+    color: hsl(210, 17%, 98%);
+}
+
+#error-message{
+    color: hsl(0, 100%, 29%);
+    font-size: 40px;
+    min-height: 50px;
 }
 
 #container{
@@ -15,13 +29,13 @@
     color: hsl(210, 11%, 15%);
     display: grid;
     row-gap: 16px;
-    column-gap: 0px;
+    column-gap: 0;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto 50px auto auto;
     grid-template-areas:
                 "a a a"
                 "b b c"
-                ". d ."
+                "d d d"
                 "e e e";
 }
 
@@ -74,5 +88,6 @@ body{
     align-items: center;
     align-content: center;
     justify-content: center;
+
 }
 }

@@ -12,14 +12,18 @@ const backGround = document.getElementById("body");
 
 // Fake een event
 const elem = document.getElementById('search-button');
+let click = 0;
 
 elem.addEventListener('click', function(e) {
-    searchCountry("Nederland");
-
+    if(click === 0) {
+        searchCountry("Nederland");
+    }
 });
+
 setTimeout(function() {
     console.log("fake event");
     elem.dispatchEvent(new Event('click'));
+    click++
 }, 0);
 
 
@@ -34,6 +38,7 @@ function logKey(e) {
         console.log("text = " + text);
         searchCountry(text);
         searchContainer.value = '';
+
     }
 }
 
@@ -47,6 +52,13 @@ function logMouse(e){
         console.log("text = " + text);
         searchCountry(text);
         searchContainer.value = '';
+
+    }
+}
+function removeBackGround(){
+    const oldDataCheck2 = document.getElementById("container-back-ground");
+    if(oldDataCheck2){
+        backGround.removeChild(oldDataCheck2);
     }
 }
 
@@ -60,6 +72,7 @@ async function searchCountry(text) {
 
 
 
+
     try {
         const result = await axios.get(`https://restcountries.eu/rest/v2/name/${text}`);
         console.log("text in try = " + text);
@@ -67,7 +80,9 @@ async function searchCountry(text) {
 
         if(oldDataCheck){
             infoContainer.removeChild(oldDataCheck);
+
         }
+
             createCountryInfoField(result);
     }
     catch (e) {
@@ -155,7 +170,6 @@ function createStringFromArray(array,beginString) {
 }
 
 function backGroundNames(names){
-
     let namesString = "";
     let i = ""
     for (let a = 0; a < 10 ;a++) {
@@ -165,5 +179,6 @@ function backGroundNames(names){
         }
     }
     console.log("namesString -->" + namesString);
+    removeBackGround();
     return namesString;
 }
