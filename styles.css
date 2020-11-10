@@ -104,6 +104,7 @@ a{
 }
 
 #country-list p {
+    color: black;
     font-size: 15px;
     margin: 0;
 }
