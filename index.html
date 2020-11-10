@@ -8,16 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
-<body id = "body">
+<body id = "body-index">
+
         <div id ="container">
+            <a href="worldregions.html">Go to worldmap</a>
                 <h1 id = "item-a"> Type in a country to find out some fun facts.</h1>
                 <label for="search-field"></label><input id="search-field" type="text" placeholder="Zoeken" />
                 <button type="button" id="search-button">Search</button>
                 <div id="error-message"></div>
                 <div id="country-info"></div>
         </div>
-        <script src="main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="main.js"></script>
         <!--    <script src="./node_modules/axios/dist/axios.min.js"></script>-->
 </body>
 </html>
